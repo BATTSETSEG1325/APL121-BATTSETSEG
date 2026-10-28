@@ -1,0 +1,107 @@
+<?xml version="1.0"?>
+<flowgorithm fileversion="4.2">
+    <attributes>
+        <attribute name="name" value="quest"/>
+        <attribute name="authors" value="student"/>
+        <attribute name="about" value="Number Magic Table"/>
+        <attribute name="saved" value="2026-10-29 12:00:00 PM"/>
+        <attribute name="created" value="2026-10-29 12:00:00 PM"/>
+        <attribute name="edited" value="2026-10-29 12:00:00 PM"/>
+    </attributes>
+    <function name="Main" type="None" variable="">
+        <parameters/>
+        <body>
+            <declare name="n" type="Integer" array="False" size=""/>
+            <declare name="a" type="Integer" array="False" size=""/>
+            <declare name="b" type="Integer" array="False" size=""/>
+            <declare name="c" type="Integer" array="False" size=""/>
+            <declare name="i" type="Integer" array="False" size=""/>
+            <declare name="temp" type="Integer" array="False" size=""/>
+            <declare name="reverse" type="Integer" array="False" size=""/>
+            <declare name="sa" type="Integer" array="False" size=""/>
+            <declare name="sb" type="Integer" array="False" size=""/>
+            <declare name="sc" type="Integer" array="False" size=""/>
+            <output expression="&quot;NUMBER MAGIC TABLE&quot;" newline="True"/>
+            <output expression="&quot;Enter n (1-1000000): &quot;" newline="False"/>
+            <input variable="n"/>
+            <while expression="n &lt; 1 or n &gt; 1000000">
+                <body>
+                    <output expression="&quot;Invalid. Enter n (1-1000000): &quot;" newline="False"/>
+                    <input variable="n"/>
+                </body>
+            </while>
+            <output expression="&quot;Multiplication table:&quot;" newline="True"/>
+            <assign variable="i" expression="1"/>
+            <while expression="i &lt;= 10">
+                <body>
+                    <output expression="n &amp; &quot; x &quot; &amp; i &amp; &quot; = &quot; &amp; (n * i)" newline="True"/>
+                    <assign variable="i" expression="i + 1"/>
+                </body>
+            </while>
+            <if expression="n mod 2 = 0 and n &gt; 0">
+                <then>
+                    <output expression="&quot;Even number&quot;" newline="True"/>
+                </then>
+                <else>
+                    <output expression="&quot;Odd number&quot;" newline="True"/>
+                </else>
+            </if>
+            <output expression="&quot;Digit sum: &quot; &amp; digitSum(n)" newline="True"/>
+            <assign variable="temp" expression="n"/>
+            <assign variable="reverse" expression="0"/>
+            <while expression="temp &gt; 0">
+                <body>
+                    <assign variable="reverse" expression="reverse * 10 + temp mod 10"/>
+                    <assign variable="temp" expression="temp / 10"/>
+                </body>
+            </while>
+            <output expression="&quot;Reversed number: &quot; &amp; reverse" newline="True"/>
+            <output expression="&quot;Enter three positive numbers: &quot;" newline="False"/>
+            <input variable="a"/>
+            <input variable="b"/>
+            <input variable="c"/>
+            <while expression="a &lt;= 0 or b &lt;= 0 or c &lt;= 0">
+                <body>
+                    <output expression="&quot;Invalid. Enter three positive numbers: &quot;" newline="False"/>
+                    <input variable="a"/>
+                    <input variable="b"/>
+                    <input variable="c"/>
+                </body>
+            </while>
+            <assign variable="sa" expression="digitSum(a)"/>
+            <assign variable="sb" expression="digitSum(b)"/>
+            <assign variable="sc" expression="digitSum(c)"/>
+            <output expression="&quot;Digit sums: a=&quot; &amp; sa &amp; &quot;, b=&quot; &amp; sb &amp; &quot;, c=&quot; &amp; sc" newline="True"/>
+            <if expression="sa &gt;= sb and sa &gt;= sc">
+                <then>
+                    <output expression="&quot;Number with largest digit sum: &quot; &amp; a" newline="True"/>
+                </then>
+                <else>
+                    <if expression="sb &gt;= sa and sb &gt;= sc">
+                        <then>
+                            <output expression="&quot;Number with largest digit sum: &quot; &amp; b" newline="True"/>
+                        </then>
+                        <else>
+                            <output expression="&quot;Number with largest digit sum: &quot; &amp; c" newline="True"/>
+                        </else>
+                    </if>
+                </else>
+            </if>
+        </body>
+    </function>
+    <function name="digitSum" type="Integer" variable="sum">
+        <parameters>
+            <parameter name="number" type="Integer" array="False"/>
+        </parameters>
+        <body>
+            <declare name="sum" type="Integer" array="False" size=""/>
+            <assign variable="sum" expression="0"/>
+            <while expression="number &gt; 0">
+                <body>
+                    <assign variable="sum" expression="sum + number mod 10"/>
+                    <assign variable="number" expression="number / 10"/>
+                </body>
+            </while>
+        </body>
+    </function>
+</flowgorithm>
